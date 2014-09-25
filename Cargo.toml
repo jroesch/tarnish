@@ -1,5 +1,12 @@
 [package]
 
-name = "ruby-rs"
+name = "tarnish"
 version = "0.0.1"
 authors = ["Jared Roesch <roeschinc@gmail.com>"]
+
+[lib]
+name = "tarnish"
+crate-type = ["dylib"]
+
+[dependencies.rust-bindgen]
+git = "https://github.com/crabtw/rust-bindgen.git"
