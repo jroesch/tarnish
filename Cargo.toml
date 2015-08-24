@@ -3,10 +3,11 @@
 name = "tarnish"
 version = "0.0.1"
 authors = ["Jared Roesch <roeschinc@gmail.com>"]
+build = "build.rs"
 
 [lib]
 name = "tarnish"
 crate-type = ["dylib"]
 
-[dependencies.rust-bindgen]
+[build-dependencies.bindgen]
 git = "https://github.com/crabtw/rust-bindgen.git"
