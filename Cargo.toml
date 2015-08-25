@@ -9,5 +9,8 @@ build = "build.rs"
 name = "tarnish"
 crate-type = ["dylib"]
 
+[build-dependencies]
+pkg-config = "*"
+
 [build-dependencies.bindgen]
 git = "https://github.com/crabtw/rust-bindgen.git"

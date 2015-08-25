@@ -1,26 +1,20 @@
-#![crate_name="tarnish"]
-#![crate_type="dylib"]
-
+#![feature(libc)]
+#![feature(concat_idents)]
 extern crate libc;
 
-pub mod raw {
-  pub mod ruby;
+use std::ffi::CString;
+
+mod raw {
+    pub mod ruby;
 }
 
 pub mod ruby;
+#[macro_use] pub mod macros;
 
-#[test]
-fn it_works() {
-}
+use ruby::*;
 
-// static mut RubyModuleRust: raw::ruby::VALUE =
-
-#[no_mangle]
-pub extern fn Init_tarnish() {
-    println!("Hello World!");
-    //let foo = "FooBar".to_c_str().as_ptr();
-    let f1 = unsafe { raw::ruby::rb_exit(0) };
-    //unsafe { raw::ruby::rb_intern(foo) };
-    // let res = unsafe { raw::ruby::rb_define_module("MyVeryFooBar".to_c_str().as_ptr()) };
+ruby_extension!(Init_tarnish, {
+    let mut module = Module::new(CString::new("MyVeryFooBar").unwrap());
+    module.define_module_fn(CString::new("test").unwrap(), 0);
     println!("After module decl!")
-}
+});
