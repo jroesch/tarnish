@@ -1,5 +1,4 @@
-#[macro_use]
-
+#[macro_export]
 macro_rules! ruby_extension {
     ($name:ident, $body:block) => (
         #[no_mangle]
