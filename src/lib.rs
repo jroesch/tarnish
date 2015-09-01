@@ -15,9 +15,12 @@ use ruby::*;
 
 ruby_extension!(Init_tarnish, {
     let mut module = Module::new(CString::new("MyVeryFooBar").unwrap());
-    define_module_fn!(module, CString::new("test").unwrap(), 0, args {
-        match args { _ => panic!() }
-        return raw::ruby::RUBY_Qnil as u64;
-    });
+
+    define_module_fn!(module, CString::new("test").unwrap(), 0, test_impl);
+
+    extern fn test_impl() -> Value {
+        return ruby::NIL;
+    }
+
     println!("After module decl!")
 });
